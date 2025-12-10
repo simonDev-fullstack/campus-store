@@ -25,6 +25,8 @@ export function FilterBar({ selectedFilters, onFilterChange }) {
   return (
     <div className="mb-6">
       <div className="flex items-center gap-3 flex-wrap">
+
+        {/* Filter Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="flex items-center gap-2 px-4 py-2.5 bg-white border border-neutral-200 rounded-lg hover:bg-neutral-50 transition-all shadow-sm"
@@ -32,7 +34,7 @@ export function FilterBar({ selectedFilters, onFilterChange }) {
           <Filter className="w-4 h-4" />
           <span>Filters</span>
           {selectedFilters.length > 0 && (
-            <span className="bg-neutral-900 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+            <span className="bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
               {selectedFilters.length}
             </span>
           )}
@@ -44,9 +46,9 @@ export function FilterBar({ selectedFilters, onFilterChange }) {
             <button
               key={filter.id}
               onClick={() => toggleFilter(filter.id)}
-              className={`px-5 py-2.5 rounded-lg transition-all duration-200 ${
+              className={`px-5 py-2.5 rounded-lg transition-all duration-200 text-sm font-medium ${
                 selectedFilters.includes(filter.id)
-                  ? 'bg-neutral-900 text-white shadow-md'
+                  ? 'bg-blue-500 border-blue-500 text-white shadow-sm'
                   : 'bg-white border border-neutral-200 text-neutral-700 hover:bg-neutral-50'
               }`}
             >
@@ -57,7 +59,7 @@ export function FilterBar({ selectedFilters, onFilterChange }) {
           {selectedFilters.length > 0 && (
             <button
               onClick={clearFilters}
-              className="text-neutral-600 hover:text-neutral-900 text-sm ml-2 underline-offset-2 hover:underline"
+              className="text-red-500 hover:text-red-600 text-sm ml-2 underline-offset-2 hover:underline transition-colors"
             >
               Clear all
             </button>
@@ -74,7 +76,7 @@ export function FilterBar({ selectedFilters, onFilterChange }) {
                 type="checkbox"
                 checked={selectedFilters.includes(filter.id)}
                 onChange={() => toggleFilter(filter.id)}
-                className="w-4 h-4 rounded border-neutral-300 text-neutral-900 focus:ring-neutral-900"
+                className="w-4 h-4 rounded border-neutral-300 text-blue-500 focus:ring-blue-500"
               />
               <span className="text-neutral-900 group-hover:text-neutral-600 transition-colors">
                 {filter.name}
@@ -85,7 +87,7 @@ export function FilterBar({ selectedFilters, onFilterChange }) {
           {selectedFilters.length > 0 && (
             <button
               onClick={clearFilters}
-              className="w-full mt-3 px-4 py-2 text-neutral-600 hover:text-neutral-900 text-sm underline-offset-2 hover:underline"
+              className="w-full mt-3 px-4 py-2 text-red-500 hover:text-red-600 text-sm underline-offset-2 hover:underline transition-colors"
             >
               Clear all filters
             </button>

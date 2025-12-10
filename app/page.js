@@ -1,6 +1,6 @@
 import React from 'react'
 import LandingPage from './LandingPage'
-import { categories,products } from '@/data/Mockdata'
+import { categories,products } from '@/lib/Mockdata'
 function page() {
   return (
     <div>

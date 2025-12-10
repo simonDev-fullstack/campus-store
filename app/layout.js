@@ -1,6 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AppProvider } from "@/contexts/AppContext";
+import { FloatingWhatsApp } from "@/components/FloatingWhatsapp";
+import { AdminProvider } from "@/contexts/AdminProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,9 +25,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-      <AppProvider>
-        {children}
-      </AppProvider>
+        <AppProvider>
+            {children}
+
+        </AppProvider>
       </body>
     </html>
   );

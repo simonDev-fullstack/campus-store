@@ -12,6 +12,7 @@ import { ProductDetail } from "@/components/ProductDetail";
 import { Cart } from "@/components/Cart";
 import { InfoPages } from "@/components/infoPages";
 import { Search } from "lucide-react";
+import { SearchOverlay } from "@/components/SearchOverlay";
 
 export default function LandingPage({ products, categories }) {
   const {
@@ -33,34 +34,65 @@ export default function LandingPage({ products, categories }) {
     setInfoPage
   } = useApp();
 
-  // Filter products
+  const [isSearchOpen, setIsSearchOpen] = React.useState(false);
+
+  /** Filter logic */
   const filteredProducts = products.filter((p) => {
-    const matchesCategory = selectedCategory === "all" || p.category === selectedCategory;
+    const matchesCategory =
+      selectedCategory === "all" || p.category === selectedCategory;
+
     const matchesSearch =
       p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       p.description.toLowerCase().includes(searchQuery.toLowerCase());
+
     const matchesFilters =
       selectedFilters.length === 0 ||
-      selectedFilters.some((filter) => p.tags?.includes(filter));
+      selectedFilters.some((f) => p.tags?.includes(f));
+
     return matchesCategory && matchesSearch && matchesFilters;
   });
+
+  /** Results for overlay (lighter filter) */
+  const filteredResults = products.filter((p) =>
+    p.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <div className="min-h-screen bg-neutral-50">
-      {/* Header */}
+      {/* HEADER */}
       <Header
         cartCount={totalItems}
         onCartClick={() => setIsCartOpen(true)}
         searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
+        onSearchChange={(v) => {
+          setSearchQuery(v);
+          if (!isSearchOpen) setIsSearchOpen(true);  // Open overlay on input focus
+        }}
+        onSearchFocus={() => setIsSearchOpen(true)}
       />
 
-      {/* Hero */}
-      <Hero />
+      {/* HERO */}
+<Hero flashProducts={products} />
 
-      {/* Main content */}
+      {/* SEARCH OVERLAY — Option C */}
+      <SearchOverlay
+        isOpen={isSearchOpen}
+        query={searchQuery}
+        setQuery={setSearchQuery}
+        results={filteredResults}
+        onClose={() => {
+          setIsSearchOpen(false);
+          setSearchQuery("");
+        }}
+        onResultClick={(product) => {
+          setSelectedProduct(product);
+          setIsSearchOpen(false);
+        }}
+      />
+
+      {/* MAIN CONTENT */}
       <main className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
         <CategoryNav
           categories={categories}
@@ -97,14 +129,16 @@ export default function LandingPage({ products, categories }) {
           <ProductGrid
             products={filteredProducts}
             onProductClick={setSelectedProduct}
+           onAddToCart={addToCart}
+
           />
         )}
       </main>
 
-      {/* Footer opens InfoPages */}
+      {/* FOOTER */}
       <Footer onInfoClick={setInfoPage} />
 
-      {/* Product detail modal */}
+      {/* PRODUCT DETAIL MODAL */}
       {selectedProduct && (
         <ProductDetail
           product={selectedProduct}
@@ -113,7 +147,7 @@ export default function LandingPage({ products, categories }) {
         />
       )}
 
-      {/* Cart drawer */}
+      {/* CART */}
       {isCartOpen && (
         <Cart
           items={cartItems}
@@ -123,7 +157,7 @@ export default function LandingPage({ products, categories }) {
         />
       )}
 
-      {/* Info pages */}
+      {/* INFO PAGES */}
       {infoPage && (
         <InfoPages page={infoPage} onClose={() => setInfoPage(null)} />
       )}

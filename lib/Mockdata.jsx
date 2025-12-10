@@ -16,10 +16,17 @@ export const products = [
     originalPrice: 49.99,
     category: "tech",
     image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=500&q=80",
+      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&q=80"
+    ],
     description:
       "Perfect for lectures and library sessions. Crystal clear audio with 6-hour battery life.",
     inStock: true,
     tags: ["bestseller", "sale"],
+    variations: ["Black", "White"],
+    maxStock: 10,
+    isFlashSale:true
   },
   {
     id: "2",
@@ -27,10 +34,17 @@ export const products = [
     price: 34.99,
     category: "tech",
     image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&q=80"
+    ],
     description:
       "Ergonomic laptop stand for better posture during those long study sessions.",
     inStock: true,
     tags: ["bestseller"],
+    variations: ["Aluminum", "Black"],
+    maxStock: 10,
+    isFlashSale:true
+    
   },
   {
     id: "3",
@@ -38,10 +52,17 @@ export const products = [
     price: 59.99,
     category: "lifestyle",
     image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&q=80"
+    ],
     description:
       "Spacious backpack with laptop compartment. Perfect for carrying books and tech.",
     inStock: true,
     tags: ["new"],
+    variations: ["Black", "Blue", "Gray"],
+    maxStock: 15,
+    isFlashSale:true
+
   },
   {
     id: "4",
@@ -49,10 +70,15 @@ export const products = [
     price: 29.99,
     category: "lifestyle",
     image: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=500&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=500&q=80"
+    ],
     description:
       "Reduce eye strain from late-night study sessions and screen time.",
     inStock: true,
     tags: ["bestseller"],
+    variations: ["Black", "Clear"],
+    maxStock: 20
   },
   {
     id: "5",
@@ -61,9 +87,14 @@ export const products = [
     originalPrice: 24.99,
     category: "dorm",
     image: "https://images.unsplash.com/photo-1587222656590-6a810a3d1f00?w=500&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1587222656590-6a810a3d1f00?w=500&q=80"
+    ],
     description: "Keep your dorm desk tidy with this minimalist organizer.",
     inStock: true,
     tags: ["sale"],
+    variations: ["Wood", "White"],
+    maxStock: 12
   },
   {
     id: "6",
@@ -71,9 +102,15 @@ export const products = [
     price: 39.99,
     category: "dorm",
     image: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&q=80"
+    ],
     description:
       "Adjustable brightness for late-night cramming without disturbing your roommate.",
     inStock: true,
+    tags: [],
+    variations: ["Black", "White", "Silver"],
+    maxStock: 15
   },
   {
     id: "7",
@@ -81,11 +118,17 @@ export const products = [
     price: 22.99,
     category: "lifestyle",
     image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&q=80"
+    ],
     description:
       "Stay hydrated between classes. Keeps drinks cold for 24 hours.",
     inStock: true,
     tags: ["bestseller"],
+    variations: ["Blue", "Green", "Red"],
+    maxStock: 25
   },
+
   {
     id: "8",
     name: "Portable Charger",
